@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth-service")
+@CrossOrigin
 public class UserController {
 
-    private CustomUserService customUserService;
+    private final CustomUserService customUserService;
 
 
     @Autowired
