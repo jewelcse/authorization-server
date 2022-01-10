@@ -1,8 +1,12 @@
 server:
   port: 9191
 spring:
+  security:
+    filter:
+      order: 50
+
   datasource:
-    url: jdbc:mysql://localhost:3306/authdb3?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/ecom_service_db?createDatabaseIfNotExist=true
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -11,6 +15,7 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
     properties:
       hibernate:
         show_sql: true
