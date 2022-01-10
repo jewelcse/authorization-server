@@ -4,6 +4,7 @@ spring:
   security:
     filter:
       order: 50
+
   datasource:
     url: jdbc:mysql://localhost:3306/ecom_service_db?createDatabaseIfNotExist=true
     username: root

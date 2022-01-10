@@ -7,6 +7,7 @@ import com.authorizationserver.model.Role;
 import com.authorizationserver.model.User;
 import com.authorizationserver.repository.RoleRepository;
 import com.authorizationserver.repository.UserDetailRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,17 +20,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service("userDetailsService")
 public class UserDetailServiceImpl implements UserDetailsService,CustomUserService {
 
-    @Autowired
-    private UserDetailRepository userDetailRepository;
+    private final UserDetailRepository userDetailRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
