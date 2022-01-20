@@ -38,7 +38,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/api/v1/auth-service/register","/api/v1/auth-service/user/*","/oauth/token").permitAll()
+                .antMatchers(
+                        "/api/v1/auth-service/register",
+                        "/api/v1/auth-service/customer/register",
+                        "/api/v1/auth-service/user/*",
+                        "/oauth/token").permitAll()
                 .anyRequest().authenticated();
     }
 }

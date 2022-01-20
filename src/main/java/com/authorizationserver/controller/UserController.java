@@ -1,6 +1,7 @@
 package com.authorizationserver.controller;
 
 
+import com.authorizationserver.dto.CustomerDto;
 import com.authorizationserver.dto.RegisterDto;
 import com.authorizationserver.model.User;
 import com.authorizationserver.service.CustomUserService;
@@ -25,6 +26,11 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> registerNewUser(@RequestBody RegisterDto registerDto){
         return new ResponseEntity<>(customUserService.registerUser(registerDto), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/customer/register")
+    public ResponseEntity<?> registerNewCustomer(@RequestBody CustomerDto customerDto){
+        return new ResponseEntity<>(customUserService.registerUser(customerDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/user/{username}")

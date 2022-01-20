@@ -1,6 +1,8 @@
 package com.authorizationserver.service;
 
+import com.authorizationserver.dto.CustomerDto;
 import com.authorizationserver.dto.RegisterDto;
+import com.authorizationserver.exception.ApplicationException;
 import com.authorizationserver.model.AuthUserDetail;
 import com.authorizationserver.model.Permission;
 import com.authorizationserver.model.Role;
@@ -56,6 +58,42 @@ public class UserDetailServiceImpl implements UserDetailsService,CustomUserServi
         newUser.setAccountNonLocked(true);
         newUser.setCredentialsNonExpired(true);
         newUser.setPassword(passwordEncoder.encode(registerDto.getPassword()));
+        // get role
+        Optional<Role> doesExistRole = roleRepository.findByName("ROLE_SELLER");
+        // added role to the list
+        List<Role> userRoles = new ArrayList<>();
+        userRoles.add(doesExistRole.get());
+
+
+        List<Permission> permissions = new ArrayList<>();
+        doesExistRole.get().setPermissions(permissions);
+
+        newUser.setRoles(userRoles);
+        return userDetailRepository.save(newUser);
+    }
+
+    @Override
+    public User registerUser(CustomerDto customerDto) {
+
+
+        Optional<User> doesExist = userDetailRepository.findByUsername(customerDto.getMobile());
+
+        if (doesExist.isPresent()){
+            throw new ApplicationException("Username/Mobile Already exist");
+        }
+
+
+        //  create new user
+        User newUser = new User();
+        newUser.setEmail("test@gmail.com");
+        newUser.setFirstName(customerDto.getFirstName());
+        newUser.setLastName(customerDto.getLastName());
+        newUser.setUsername(customerDto.getMobile());
+        newUser.setAccountNonExpired(true);
+        newUser.setEnabled(true);
+        newUser.setAccountNonLocked(true);
+        newUser.setCredentialsNonExpired(true);
+        newUser.setPassword(passwordEncoder.encode(customerDto.getPassword()));
         // get role
         Optional<Role> doesExistCustomerRole = roleRepository.findByName("ROLE_CUSTOMER");
         // added role to the list
