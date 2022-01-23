@@ -1,8 +1,9 @@
 package com.authorizationserver.controller;
 
 
-import com.authorizationserver.dto.CustomerDto;
-import com.authorizationserver.dto.RegisterDto;
+import com.authorizationserver.dto.CustomerRegisterDto;
+import com.authorizationserver.dto.DeliveryManRegisterDto;
+import com.authorizationserver.dto.SellerRegisterDto;
 import com.authorizationserver.model.User;
 import com.authorizationserver.service.CustomUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,19 @@ public class UserController {
         this.customUserService = customUserService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> registerNewUser(@RequestBody RegisterDto registerDto){
+    @PostMapping("/seller/registration")
+    public ResponseEntity<?> sellerRegistration(@RequestBody SellerRegisterDto registerDto){
         return new ResponseEntity<>(customUserService.registerUser(registerDto), HttpStatus.CREATED);
     }
 
-    @PostMapping("/customer/register")
-    public ResponseEntity<?> registerNewCustomer(@RequestBody CustomerDto customerDto){
+    @PostMapping("/customer/registration")
+    public ResponseEntity<?> customerRegistration(@RequestBody CustomerRegisterDto customerDto){
         return new ResponseEntity<>(customUserService.registerUser(customerDto), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/delivery-man/registration")
+    public ResponseEntity<?> deliveryManRegistration(@RequestBody DeliveryManRegisterDto deliveryManRegisterDto){
+        return new ResponseEntity<>(customUserService.registerUser(deliveryManRegisterDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/user/{username}")
