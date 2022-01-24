@@ -19,9 +19,6 @@ import javax.sql.DataSource;
 @Configuration
 public class AuthorizationServerConfiguration implements AuthorizationServerConfigurer {
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
-
 
     private final DataSource dataSource;
     private final AuthenticationManager authenticationManager;
