@@ -43,6 +43,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/api/v1/auth-service/customer/registration",
                         "/api/v1/auth-service/delivery-man/registration",
                         "/api/v1/auth-service/user/*",
+                        "/api/v1/auth-service/get/users",
+                        "/api/v1/auth-service/get/delivery/mens",
                         "/oauth/token").permitAll()
                 .anyRequest().authenticated();
     }

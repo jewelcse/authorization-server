@@ -118,4 +118,14 @@ public class UserDetailServiceImpl implements UserDetailsService,CustomUserServi
     public User userDetailsByUsername(String username) {
         return userDetailRepository.findByUsername(username).get();
     }
+
+    @Override
+    public List<User> getUsers() {
+        return userDetailRepository.findAll();
+    }
+
+    @Override
+    public List<User> getDeliverymanProfile() {
+        return userDetailRepository.findByRoles_Name("ROLE_DELIVERY");
+    }
 }
