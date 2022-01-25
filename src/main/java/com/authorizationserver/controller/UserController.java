@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/auth-service")
 @CrossOrigin
@@ -42,5 +44,14 @@ public class UserController {
     @GetMapping("/user/{username}")
     public ResponseEntity<User> getUserDetailsByUsername(@PathVariable String username){
         return new ResponseEntity<User>(customUserService.userDetailsByUsername(username),HttpStatus.OK);
+    }
+
+    @GetMapping("/get/users")
+    public ResponseEntity<List<User>> getUsers(){
+        return new ResponseEntity<>(customUserService.getUsers(),HttpStatus.OK);
+    }
+    @GetMapping("/get/delivery/mens")
+    public ResponseEntity<List<User>> getDeliveryMens(){
+        return new ResponseEntity<>(customUserService.getDeliverymanProfile(),HttpStatus.OK);
     }
 }
