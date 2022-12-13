@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class RegisterDto {
+public class SellerRegisterDto {
     private String firstName;
     private String lastName;
     private String email;
